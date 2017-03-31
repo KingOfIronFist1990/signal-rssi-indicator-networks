@@ -42,9 +42,26 @@ public boolean execute(String action, JSONArray args, CallbackContext callbackCo
 class SignalStrengthStateListener extends PhoneStateListener {
 
 @Override
-public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
+public void onSignalStrengthsChanged(android.telephony.CellSignalStrength signalStrength) {
         super.onSignalStrengthsChanged(signalStrength);
-        dbm = signalStrength.getCellSignalStrength().getDbm();
+		TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+		if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE){
+
+   
+      dbm = (android.telephony.CellSignalStrengthLte)signalStrength.getDbm();
+
+}
+else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_GSM){
+	
+	 dbm = (android.telephony.CellSignalStrengthGsm)signalStrength.getDbm();
+}
+else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_CDMA){
+	dbm = (android.telephony.CellSignalStrengthCdma)signalStrength.getDbm();
+}
+else {
+	dbm = (android.telephony.CellSignalStrengthWcdma)signalStrength.getDbm();
+}
+      
      
 }
 
