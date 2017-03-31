@@ -43,21 +43,30 @@ class SignalStrengthStateListener extends PhoneStateListener {
 
 @Override
 public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
+		String ssignal = signalStrength.toString();
+
+		String[] parts = ssignal.split(" ");
         super.onSignalStrengthsChanged(signalStrength);
-		TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-		if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE){
+		TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+		
 
-   
-      dbm = (android.telephony.CellSignalStrengthLte)signalStrength.getRsrp().getDbm();
+if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE){
+
+    // For Lte SignalStrength: dbm = ASU - 140.
+    dbm = Integer.parseInt(parts[8])-140;
 
 }
-else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_GSM){
-	
-	 dbm = (android.telephony.CellSignalStrengthGsm)signalStrength.getGsmSignalStrength().getDbm();
-}
-else {
-	dbm = 100;
-}
+
+		else  if (signalStrength.isGsm()) {
+                if (signalStrength.getGsmSignalStrength() != 99)
+                    dbm = signalStrength.getGsmSignalStrength() * 2 - 113;
+                else
+                    dbm = signalStrength.getGsmSignalStrength();
+            } else {
+                dbm = signalStrength.getCdmaDbm();
+            }
+        
+		
       
      
 }
