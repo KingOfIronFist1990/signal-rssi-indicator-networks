@@ -1,0 +1,19 @@
+{
+  "name": "signal-rssi-indicator-networks",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingOfIronFist1990/signal-rssi-indicator-networks.git"
+  },
+  "author": "rami akermi <akermirami1990@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingOfIronFist1990/signal-rssi-indicator-networks/issues"
+  },
+  "homepage": "https://github.com/KingOfIronFist1990/signal-rssi-indicator-networks#readme"
+}
