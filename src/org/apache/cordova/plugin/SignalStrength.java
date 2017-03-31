@@ -48,18 +48,16 @@ public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStre
 		if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE){
 
    
-      dbm = (android.telephony.CellSignalStrengthLte)signalStrength.getDbm();
+      dbm = (android.telephony.CellSignalStrengthLte)signalStrength.getRsrp().getDbm();
 
 }
 else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_GSM){
 	
-	 dbm = (android.telephony.CellSignalStrengthGsm)signalStrength.getDbm();
+	 dbm = (android.telephony.CellSignalStrengthGsm)signalStrength.getGsmSignalStrength().getDbm();
 }
-else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_CDMA){
-	dbm = (android.telephony.CellSignalStrengthCdma)signalStrength.getDbm();
-}
+else 
 else {
-	dbm = (android.telephony.CellSignalStrengthWcdma)signalStrength.getDbm();
+	dbm = 100;
 }
       
      
