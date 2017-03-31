@@ -47,7 +47,7 @@ public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStre
 
 		String[] parts = ssignal.split(" ");
         super.onSignalStrengthsChanged(signalStrength);
-		TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+		TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 		
 
 if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_LTE){
