@@ -55,7 +55,6 @@ else if ( tm.getNetworkType() == TelephonyManager.NETWORK_TYPE_GSM){
 	
 	 dbm = (android.telephony.CellSignalStrengthGsm)signalStrength.getGsmSignalStrength().getDbm();
 }
-else 
 else {
 	dbm = 100;
 }
